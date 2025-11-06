@@ -1,0 +1,58 @@
+[
+    {
+        "id": "307261ded5ca424b",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d9c38562527c0d5d",
+        "type": "http in",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "a4708abaabb5c6e0"
+            ]
+        ]
+    },
+    {
+        "id": "e31663f10eb95c05",
+        "type": "http response",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a4708abaabb5c6e0",
+        "type": "template",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Hello World</title>\n</head>\n<body>\n    <h1>Hello World!</h1>\n</body>\n</html>",
+        "output": "str",
+        "x": 540,
+        "y": 140,
+        "wires": [
+            [
+                "e31663f10eb95c05"
+            ]
+        ]
+    }
+]
