@@ -8,36 +8,121 @@
         "env": []
     },
     {
-        "id": "d9c38562527c0d5d",
+        "id": "391a6852e3db881b",
         "type": "http in",
         "z": "307261ded5ca424b",
-        "name": "",
-        "url": "/hello",
+        "name": "Corretoras",
+        "url": "/corretoras",
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 280,
-        "y": 140,
+        "x": 240,
+        "y": 180,
         "wires": [
             [
-                "a4708abaabb5c6e0"
+                "f85562da82e16377"
             ]
         ]
     },
     {
-        "id": "e31663f10eb95c05",
+        "id": "c333f876e599f77d",
+        "type": "template",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Lista de Corretoras</title>\n    <style>\n        body {\n            font-family: \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n            background-color: #f5f7fa;\n            color: #333;\n            margin: 0;\n            padding: 20px;\n        }\n\n        h2 {\n            text-align: center;\n            color: #1e3a8a;\n            margin-bottom: 30px;\n            font-size: 1.8rem;\n        }\n\n        ul {\n            list-style: none;\n            padding: 0;\n            max-width: 800px;\n            margin: 0 auto;\n        }\n\n        li {\n            background-color: #fff;\n            border: 1px solid #d1d5db;\n            border-radius: 8px;\n            padding: 15px;\n            margin-bottom: 10px;\n            box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n            transition: transform 0.2s ease, box-shadow 0.2s ease;\n        }\n\n        li:hover {\n            transform: translateY(-3px);\n            box-shadow: 0 4px 10px rgba(0,0,0,0.15);\n        }\n\n        li span {\n            font-weight: 600;\n            color: #1e40af;\n        }\n    </style>\n</head>\n<body>\n    <h2>Lista de Corretoras</h2>\n    <ul>\n        {{#payload}}\n        <li>\n            Nome: {{nome_comercial}} - Cidade: {{municipio}} / CNPJ: {{cnpj}}\n        </li>\n        {{/payload}}\n    </ul>\n</body>\n</html>\n",
+        "output": "str",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "f0b8a1406235fb00"
+            ]
+        ]
+    },
+    {
+        "id": "f85562da82e16377",
+        "type": "http request",
+        "z": "307261ded5ca424b",
+        "name": "API",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://brasilapi.com.br/api/cvm/corretoras/v1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "c333f876e599f77d"
+            ]
+        ]
+    },
+    {
+        "id": "f0b8a1406235fb00",
         "type": "http response",
         "z": "307261ded5ca424b",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 830,
-        "y": 140,
+        "x": 850,
+        "y": 180,
         "wires": []
     },
     {
-        "id": "a4708abaabb5c6e0",
+        "id": "5feeed991d9856ea",
+        "type": "http in",
+        "z": "307261ded5ca424b",
+        "name": "CEP",
+        "url": "/cep/:codigocep?",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 400,
+        "wires": [
+            [
+                "de8ab9a427287917"
+            ]
+        ]
+    },
+    {
+        "id": "2131a838aeebf976",
+        "type": "http request",
+        "z": "307261ded5ca424b",
+        "name": "API",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 790,
+        "y": 480,
+        "wires": [
+            [
+                "f578037260949de6"
+            ]
+        ]
+    },
+    {
+        "id": "f578037260949de6",
         "type": "template",
         "z": "307261ded5ca424b",
         "name": "",
@@ -45,14 +130,108 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Hello World</title>\n</head>\n<body>\n    <h1>Hello World!</h1>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n    <style>\n        body {\n            font-family: \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n            background-color: #f5f7fa;\n            color: #333;\n            margin: 0;\n            padding: 20px;\n        }\n\n        h2 {\n            text-align: center;\n            color: #1e3a8a;\n            margin-bottom: 30px;\n            font-size: 1.8rem;\n        }\n\n        ul {\n            list-style: none;\n            padding: 0;\n            max-width: auto;\n            margin: 0 auto;\n            text-align: center;\n        }\n\n        li {\n            background-color: #fff;\n            border: 1px solid #d1d5db;\n            border-radius: 8px;\n            padding: 15px;\n            margin-bottom: 10px;\n            box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n            transition: transform 0.2s ease, box-shadow 0.2s ease;\n        }\n\n        li:hover {\n            transform: translateY(-3px);\n            box-shadow: 0 4px 10px rgba(0,0,0,0.15);\n        }\n\n        li span {\n            font-weight: 600;\n            color: #1e40af;\n        }\n    </style>\n</head>\n<body>\n    <h2>Empresa com o CEP procurado</h2>\n    <ul>\n        <li>\n            CEP: {{payload.cep}} | Estado: {{payload.state}} | Cidade: {{payload.city}} | Bairro: {{payload.neighborhood}} | Rua: {{payload.street}}\n        </li>\n    </ul>\n</body>\n</html>",
         "output": "str",
-        "x": 540,
-        "y": 140,
+        "x": 960,
+        "y": 480,
         "wires": [
             [
-                "e31663f10eb95c05"
+                "80532c3ff1b5cd5c"
             ]
         ]
+    },
+    {
+        "id": "80532c3ff1b5cd5c",
+        "type": "http response",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "de8ab9a427287917",
+        "type": "function",
+        "z": "307261ded5ca424b",
+        "name": "function 1",
+        "func": "const cep = msg.req.query.codigocep\n\nif(!cep) {\n    msg.return = 0\n} else {\n    msg.url = `https://brasilapi.com.br/api/cep/v2/${cep}`\n    msg.return = 1\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "b10299674502a987"
+            ]
+        ]
+    },
+    {
+        "id": "b10299674502a987",
+        "type": "switch",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "property": "return",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 400,
+        "wires": [
+            [
+                "5fb50a52f17bac2f"
+            ],
+            [
+                "2131a838aeebf976"
+            ]
+        ]
+    },
+    {
+        "id": "5fb50a52f17bac2f",
+        "type": "template",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n    <style>\n        body {\n            font-family: \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n            background-color: #f5f7fa;\n            color: #333;\n            margin: 0;\n            padding: 20px;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n        }\n\n        form {\n            background-color: #fff;\n            border: 1px solid #d1d5db;\n            border-radius: 8px;\n            padding: 20px;\n            box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n            max-width: 350px;\n            width: 100%;\n            text-align: left;\n            transition: transform 0.2s ease, box-shadow 0.2s ease;\n        }\n\n        form:hover {\n            transform: translateY(-3px);\n            box-shadow: 0 4px 10px rgba(0,0,0,0.15);\n        }\n\n        h2 {\n            text-align: center;\n            color: #1e3a8a;\n            margin-bottom: 20px;\n            font-size: 1.8rem;\n        }\n\n        label {\n            display: flex;\n            font-weight: 600;\n            margin-bottom: 8px;\n            color: #1e40af;\n        }\n\n        input[type=\"text\"] {\n            width: 94%;\n            padding: 10px;\n            margin-bottom: 15px;\n            border-radius: 5px;\n            border: 1px solid #d1d5db;\n            font-size: 16px;\n            text-align: left;\n            align-items: center;\n        }\n\n        button {\n            width: 100%;\n            padding: 10px;\n            background-color: #1e3a8a;\n            color: #fff;\n            border: none;\n            border-radius: 5px;\n            font-size: 16px;\n            cursor: pointer;\n            align-items: center;\n        }\n\n        button:hover {\n            background-color: #3749a0;\n        }\n    </style>\n</head>\n<body>\n    <form action=\"/cep\" method=\"get\">\n        <label>Digite o CEP:</label>\n        <input type=\"text\" name=\"codigocep\" required>\n        <button type=\"submit\">Buscar</button>\n    </form>\n</body>\n</html>",
+        "output": "str",
+        "x": 800,
+        "y": 300,
+        "wires": [
+            [
+                "6fc3662c2bd82806"
+            ]
+        ]
+    },
+    {
+        "id": "6fc3662c2bd82806",
+        "type": "http response",
+        "z": "307261ded5ca424b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 970,
+        "y": 300,
+        "wires": []
     }
 ]
